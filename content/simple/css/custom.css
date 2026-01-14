@@ -85,4 +85,10 @@ a.mfn-link-1:after {
   margin: 0 auto;
 }
 
+/* Make site wider */
+.container,
+.section_wrapper,
+.content_wrapper {
+  max-width: 1600px;   /* try 1400–1600 */
+}
 
