@@ -150,6 +150,17 @@ a.mfn-link-1:after {
   margin: 0 auto;
 }
 
+.featured-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.featured-card .cover {
+  object-fit: cover;
+  aspect-ratio: 3 / 4;   /* forces all covers to same shape */
+}
+
 
 /* Make site wider */
 .container,
