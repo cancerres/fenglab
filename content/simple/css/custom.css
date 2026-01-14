@@ -73,6 +73,11 @@ a.mfn-link-1:after {
   margin: 0 auto;
 }
 
+/* Make theme columns behave inside our grid */
+.featured-grid .column {
+  float: none !important;
+  width: auto !important;
+}
 
 /* ===============================
    Featured Cards
