@@ -161,6 +161,22 @@ a.mfn-link-1:after {
   aspect-ratio: 3 / 4;   /* forces all covers to same shape */
 }
 
+/* Make the 3 cards fill the page nicely */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Keep cards visually strong */
+.featured-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
 
 /* Make site wider */
 .container,
