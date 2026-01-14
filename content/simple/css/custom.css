@@ -91,12 +91,15 @@ a.mfn-link-1:after {
 
 /* Make the cover sit nicely inside the card */
 .featured-card .cover{
-  display:block;
-  width:100%;
-  height:auto;
+  width: 100%;
+  height: 260px;
+  object-fit: contain;    /* no crop */
+  background: #fff;       /* fills empty space */
+  display: block;
   border-radius: 12px;
   margin-bottom: 16px;
 }
+
 
 /* Optional: keep the whole card clickable WITHOUT changing your HTML */
 .featured-card a{
