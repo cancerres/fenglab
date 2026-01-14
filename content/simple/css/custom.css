@@ -41,6 +41,7 @@ a.mfn-link-1:after {
 
 /* Featured publications */
 .featured-pubs { margin: 10px 0 40px 0; }
+.featured-pubs h2 { margin: 10px 0 20px 0; }
 .featured-pubs h2 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -57,6 +58,7 @@ a.mfn-link-1:after {
   box-shadow: 0 10px 25px rgba(0,0,0,0.10);
   margin-bottom: 18px;
 }
+.featured-card { margin-bottom: 20px; }
 
 .featured-card .pub-title {
   font-size: 1.15em;
@@ -84,16 +86,12 @@ a.mfn-link-1:after {
   border-radius: 14px;
 }
 
-
-.featured-pubs .section_wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 /* Make site wider */
 .container,
 .section_wrapper,
 .content_wrapper {
-  max-width: 1600px;   /* try 1400–1600 */
+  width: 100%;
+  max-width: 1400px;
 }
+
 
