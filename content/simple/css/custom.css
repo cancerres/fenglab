@@ -136,6 +136,20 @@ a.mfn-link-1:after {
   margin-top: auto;
 }
 
+/* Make Featured Publications cards wider */
+.featured-pubs .column.one-third {
+  width: 33.3333%;
+  padding: 0 20px;     /* reduce excessive theme padding */
+  box-sizing: border-box;
+}
+
+/* Allow section to actually use the full width */
+.featured-pubs .section_wrapper {
+  max-width: 1280px;   /* or 1700px if you want even wider */
+  width: 100%;
+  margin: 0 auto;
+}
+
 
 /* Make site wider */
 .container,
