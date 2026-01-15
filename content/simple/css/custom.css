@@ -457,3 +457,92 @@ img {
 .column_our_team .icon_bar:hover i {
   color: #f2d37a !important;
 }
+
+/* =========================================================
+   HOTFIX 1 — Featured cards chopped (no clipping)
+   Paste at VERY END of custom.css
+========================================================= */
+
+/* Stop any theme wrapper from clipping the featured section */
+.featured-pubs,
+.featured-pubs .section_wrapper,
+.featured-pubs .items_group,
+.featured-pubs .featured-grid,
+.featured-pubs .featured-grid > .column,
+.featured-pubs .featured-grid > .column .column_attr,
+.featured-link,
+.featured-card {
+  overflow: visible !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* Make sure the card itself determines its height */
+.featured-card {
+  height: 100% !important;   /* equal-height per row */
+}
+
+/* If the theme is forcing column_attr to a fixed height, this fixes it */
+.featured-pubs .featured-grid > .column .column_attr.featured-card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Ensure card content never gets clipped by inner wrappers */
+.featured-card .pub-title,
+.featured-card .pub-authors,
+.featured-card .pub-meta {
+  overflow: visible !important;
+}
+
+/* If the theme sets line-height weirdly, prevent collapse */
+.featured-card .pub-authors,
+.featured-card .pub-meta {
+  white-space: normal !important;
+}
+
+/* =========================================================
+   HOTFIX 2 — Members text missing again
+   (force theme "team circle" content visible on dark)
+========================================================= */
+
+/* Force the team module to show text (some skins hide until hover/JS) */
+.team.team_circle .desc_wrapper,
+.team.team_circle .desc_wrapper * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  transform: none !important;
+  position: relative !important;
+  color: #e0e0e0 !important;
+}
+
+/* Ensure subtitle/desc are not being set to transparent/black */
+.team.team_circle .subtitle,
+.team.team_circle .desc,
+.team.team_circle p,
+.team.team_circle span,
+.team.team_circle h4 {
+  color: #e0e0e0 !important;
+}
+
+/* Some themes put an overlay or background behind the text */
+.team.team_circle {
+  background: transparent !important;
+}
+
+/* If theme uses hr_color with a background, ensure it stays visible */
+.team.team_circle .hr_color {
+  border-color: rgba(255,255,255,0.18) !important;
+}
+
+/* Make the email icon visible */
+.team.team_circle .icon_bar i {
+  color: #d4b15f !important;
+}
+.team.team_circle .icon_bar:hover i {
+  color: #f2d37a !important;
+}
