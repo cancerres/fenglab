@@ -840,3 +840,83 @@ img {
 #Subheader img {
   margin-bottom: 0 !important;
 }
+/* =========================================================
+   HOME: Premium headline (no box badge)
+   Emphasis via type + gold rule + soft glow
+========================================================= */
+
+/* Ensure positioning context */
+#Subheader .container .column.one {
+  position: relative !important;
+}
+
+/* The headline under banner */
+#Subheader h4.title {
+  /* placement */
+  margin-top: 26px !important;     /* push down from banner */
+  margin-bottom: 18px !important;
+
+  /* type */
+  font-size: clamp(26px, 2.6vw, 40px) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.6px !important;
+  line-height: 1.12 !important;
+  text-align: center !important;
+  color: #ffffff !important;
+
+  /* premium readability */
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.55),
+    0 10px 26px rgba(0,0,0,0.45) !important;
+
+  /* remove any prior "badge box" */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+
+  position: relative;
+}
+
+/* Subtle gold rule under the line (clean + pro) */
+#Subheader h4.title::after {
+  content: "";
+  display: block;
+  width: min(420px, 72%);
+  height: 2px;
+  margin: 14px auto 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(212,177,95,0),
+    rgba(212,177,95,0.95),
+    rgba(212,177,95,0)
+  );
+  opacity: 0.95;
+}
+
+/* Soft spotlight behind the text (not a box) */
+#Subheader h4.title::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: min(780px, 95%);
+  height: 120%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255,255,255,0.08),
+    rgba(212,177,95,0.06),
+    transparent 70%
+  );
+  filter: blur(18px);
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Optional: make the banner/title feel connected */
+#Subheader img {
+  margin-bottom: 10px !important;  /* keep a little breathing room */
+}
