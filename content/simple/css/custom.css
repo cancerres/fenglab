@@ -597,3 +597,10 @@ img {
 .responsive-menu-toggle:hover {
   background: rgba(212,177,95,0.10) !important;
 }
+
+/* Center the gold divider in Members (hr_color) */
+.column_our_team .hr_color {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
