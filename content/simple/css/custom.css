@@ -1,129 +1,272 @@
 /* =========================================================
-   FENG LAB — custom.css (clean final)
+   FENG LAB — custom.css (RESTORED FORMAT + FIXES)
+   - Keeps ALL previous formatting (fonts/sizes/layout)
+   - Fixes header turning white (targeted, not wildcard)
+   - Keeps Featured Pub cards stable + gold titles
+   - Keeps Members text visible + large
 ========================================================= */
 
-/* ------------------------------
-   Base typography
--------------------------------- */
+
+/* ===============================
+   Header / Lab Caption
+================================ */
+
+.zlab_caption {
+  font-size: calc(40px + (50 - 40) * ((100vw - 400px) / (800 - 400)));
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+
+/* ===============================
+   Theme Link Brackets Tweaks
+================================ */
+
+a.mfn-link-1:before {
+  margin-right: 0;
+  content: '[';
+  transform: translateX(20px);
+}
+
+a.mfn-link-1:after {
+  margin-left: 0;
+  content: ']';
+  transform: translateX(-20px);
+}
+
+
+/* ===============================
+   General Typography
+================================ */
+
+.project-text {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.project-title {
+  font-size: 24px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+
+/* =========================================================
+   GLOBAL DARK THEME (site-wide)
+   IMPORTANT: Keep text sizes from theme; only recolor.
+========================================================= */
 
 html, body {
-  background: #0b0b0b;
+  background: #0b0b0b !important;
+  color: #e0e0e0 !important;
+}
+
+/* General text */
+p, li, ul, ol, span, div {
   color: #e0e0e0;
 }
 
-p, li, span, div { color: #e0e0e0; }
-h1, h2, h3, h4, h5, h6 { color: #ffffff; }
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important;
+}
 
+/* Links */
 a { color: #d4b15f; }
 a:hover { color: #f2d37a; }
 
-hr { border-color: rgba(255,255,255,0.15); }
-
-img {
-  filter: brightness(0.97) contrast(1.02);
-}
-
-/* ------------------------------
-   Layout width
--------------------------------- */
-
-.container,
-.section_wrapper,
-.content_wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* ------------------------------
-   Header / menu (no white strip)
--------------------------------- */
-
+/* Main wrappers dark */
+#Wrapper,
 #Header_wrapper,
 #Header,
 #Top_bar,
 #Subheader,
 #Content,
 #Footer,
-.footer_copy {
-  background: #0b0b0b;
+.footer_copy,
+.section_wrapper,
+.content_wrapper {
+  background: #0b0b0b !important;
+  color: #e0e0e0 !important;
 }
 
+/* Rules */
+hr {
+  border-color: rgba(255,255,255,0.15) !important;
+}
+
+/* Slightly soften images on dark (keep your preference) */
+img {
+  filter: brightness(0.97) contrast(1.02);
+}
+
+
+/* =========================================================
+   HARD FIX: Remove WHITE STRIP / WHITE HEADER BACKGROUND
+   IMPORTANT: This is the safe version.
+   - DO NOT use #Top_bar * {background: transparent} (too destructive)
+========================================================= */
+
+/* Force header region to dark, including theme containers */
+#Header_wrapper,
+#Header,
+#Top_bar,
+#Top_bar .container,
+#Top_bar .column,
+#Top_bar .top_bar_left,
+#Top_bar .menu_wrapper,
+#Top_bar .menu-main-menu-container,
+#Top_bar .logo,
+#Top_bar .menu,
+#Top_bar ul,
+#Top_bar li,
+#Top_bar nav,
+#Top_bar .search_wrapper,
+#Top_bar .secondary_menu_wrapper,
+#Top_bar .banner_wrapper {
+  background-color: #0b0b0b !important;
+}
+
+/* Theme sometimes uses pseudo-elements for bars */
+#Header_wrapper:before,
+#Header_wrapper:after,
+#Header:before,
+#Header:after,
+#Top_bar:before,
+#Top_bar:after {
+  background: transparent !important;
+}
+
+/* Put back one intentional divider */
 #Top_bar {
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Lab title */
-.zlab_caption {
-  font-size: clamp(26px, 3vw, 40px);
-  line-height: 1.05;
-  letter-spacing: 0.4px;
-  margin: 0;
+/* If a theme child element is injecting white bg, target common offenders */
+#Top_bar .top_bar_left,
+#Top_bar .top_bar_right,
+#Top_bar .menu_wrapper,
+#Top_bar .logo {
+  background-color: transparent !important; /* allow parent dark to show through */
 }
 
-/* Menu */
+
+/* =========================================================
+   TOP MENU — clean + restore gold hover/active
+========================================================= */
+
 #menu > ul > li > a,
 #menu > ul > li > a span {
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  color: #e0e0e0 !important;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  transition: color 0.2s ease;
 }
 
-#menu > ul > li > a:hover,
-#menu > ul > li.current_page_item > a {
-  color: #d4b15f;
-}
-
+/* Remove theme hover backgrounds */
 #menu > ul > li:hover > a {
-  background: transparent;
+  background: transparent !important;
+}
+
+/* Gold hover + current */
+#menu > ul > li > a:hover,
+#menu > ul > li.current_page_item > a,
+#menu > ul > li.current_page_item > a span {
+  color: #d4b15f !important;
+}
+
+/* Underline animation */
+#menu > ul > li > a span {
+  position: relative;
+  display: inline-block;
+}
+
+#menu > ul > li > a span:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #d4b15f;
+  transition: width 0.25s ease;
+}
+
+#menu > ul > li > a:hover span:after,
+#menu > ul > li.current_page_item > a span:after {
+  width: 100%;
+}
+
+/* Menu padding */
+#menu > ul > li > a {
+  padding: 18px 14px !important;
 }
 
 .responsive-menu-toggle i {
-  color: #e0e0e0;
+  color: #e0e0e0 !important;
 }
 
-/* ------------------------------
-   SECTION TITLES
--------------------------------- */
-
-.section-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
 
 /* =========================================================
-   PUBLICATIONS PAGE
+   SITE WIDTH CONTROL (safe)
 ========================================================= */
 
-body.publications-page .featured-grid {
-  display: grid;
+.container,
+.section_wrapper,
+.content_wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* =========================================================
+   FEATURED PUBLICATIONS (SIMPLIFIED HTML VERSION)
+   Assumes you changed HTML to:
+   .featured-grid > .featured-item > a.featured-link > .featured-card
+========================================================= */
+
+.featured-grid {
+  display: grid !important;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   gap: 40px;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  align-items: stretch;
 }
 
-/* Each grid cell */
 .featured-item {
   display: flex;
+  align-items: stretch;
 }
 
-/* Entire card clickable */
 .featured-link {
   display: flex;
   width: 100%;
-  text-decoration: none;
+  text-decoration: none !important;
+  align-items: stretch;
 }
 
 .featured-card {
-  background: #fff;
-  color: #000;
-  border-radius: 18px;
+  background: #ffffff !important;
   padding: 26px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+
   display: flex;
   flex-direction: column;
+
   width: 100%;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  height: 100%;
 }
 
 .featured-link:hover .featured-card {
@@ -131,20 +274,26 @@ body.publications-page .featured-grid {
   box-shadow: 0 18px 42px rgba(0,0,0,0.14);
 }
 
+/* Cover image */
 .featured-card .cover {
+  width: 100%;
   height: 320px;
   object-fit: contain;
+  background: #fff;
+  display: block;
   border-radius: 14px;
   margin-bottom: 18px;
-  background: #fff;
-  filter: none;
+
+  filter: none !important; /* do not dim inside white card */
 }
 
+/* Gold title (RESTORED) */
 .featured-card .pub-title {
   font-size: 1.35em;
+  line-height: 1.3;
   font-weight: 700;
-  color: #c89a2b;
-  margin-bottom: 14px;
+  color: #c89a2b !important;
+  margin: 0 0 14px 0;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -153,151 +302,201 @@ body.publications-page .featured-grid {
 }
 
 .featured-link:hover .pub-title {
-  color: #a87f1f;
+  color: #a87f1f !important;
 }
 
+/* Authors / meta */
 .featured-card .pub-authors {
-  color: #555;
-  font-size: 1.05em;
+  font-size: 1.1em;
   line-height: 1.6;
+  margin: 0 0 10px 0;
+  color: #555 !important;
 }
 
 .featured-card .pub-meta {
-  margin-top: auto;
+  font-size: 1.1em;
   font-weight: 600;
-  color: #333;
+  color: #333 !important;
+  margin-top: auto;
+}
+
+/* Prevent “chopped” cards (safe) */
+.featured-pubs,
+.featured-pubs .section_wrapper,
+.featured-pubs .items_group {
+  overflow: visible !important;
 }
 
 /* Responsive */
 @media (max-width: 1100px) {
-  body.publications-page .featured-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .featured-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
   }
 }
+
 @media (max-width: 720px) {
-  body.publications-page .featured-grid {
-    grid-template-columns: 1fr;
+  .featured-grid {
+    grid-template-columns: 1fr !important;
   }
-  .featured-card .cover { height: 260px; }
+  .featured-card .cover {
+    height: 280px;
+  }
 }
+
 
 /* =========================================================
-   MEMBERS PAGE
+   MEMBERS PAGE: wider columns + bigger photos + readable text
+   (Keep your previous working behavior)
 ========================================================= */
 
-body.members-page .column_our_team {
-  width: 42%;
-  margin: 0 4% 40px;
-  float: left;
+.column_our_team {
+  width: 42% !important;
+  margin-left: 4% !important;
+  margin-right: 4% !important;
+  float: left !important;
 }
 
-body.members-page .items_group::after {
+/* Make sure row can contain floated children */
+.items_group:after {
   content: "";
   display: block;
   clear: both;
 }
 
+/* Smaller screens: one per row */
 @media (max-width: 1100px) {
-  body.members-page .column_our_team {
-    width: 80%;
-    margin: 0 auto 40px;
-    float: none;
+  .column_our_team {
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
   }
 }
 
-/* Photo */
-body.members-page .column_our_team .image_frame {
-  width: 280px;
-  height: 280px;
-  margin: 0 auto;
+/* Photo frame larger */
+.column_our_team .image_frame {
+  transform: none !important;
+  width: 280px !important;
+  height: 280px !important;
+  margin: 0 auto !important;
 }
 
-body.members-page .image_wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Image fill */
+.column_our_team .image_wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  margin-left: 0 !important;
+  max-width: none !important;
 }
 
-body.members-page .image_frame,
-body.members-page img {
-  border-radius: 50%;
+/* Ensure truly circular */
+.column_our_team .image_frame,
+.column_our_team .image_wrapper,
+.column_our_team img {
+  border-radius: 50% !important;
 }
 
-/* Text visibility fix */
-body.members-page .team,
-body.members-page .team * {
-  color: #e0e0e0;
-  opacity: 1;
-  visibility: visible;
-  display: block;
+/* Members text must be visible on dark */
+.column_our_team,
+.column_our_team * {
+  color: #e0e0e0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Typography */
-body.members-page h4 {
-  font-size: clamp(22px, 2.4vw, 30px);
-  margin-bottom: 10px;
+/* Typography scale similar to Home rules */
+.column_our_team h4 {
+  font-size: calc(22px + (30 - 22) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
 }
 
-body.members-page .subtitle {
-  font-size: clamp(16px, 1.8vw, 20px);
-  color: #cfcfcf;
+.column_our_team .subtitle {
+  font-size: calc(16px + (20 - 16) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.45 !important;
+  color: #cfcfcf !important;
 }
 
-body.members-page .desc {
-  font-size: clamp(16px, 1.7vw, 19px);
-  line-height: 1.65;
+.column_our_team .desc {
+  font-size: calc(16px + (19 - 16) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.6 !important;
+  color: #e0e0e0 !important;
 }
 
-body.members-page .hr_color {
-  border-color: rgba(255,255,255,0.2);
+/* Divider line */
+.column_our_team .hr_color {
+  border-color: rgba(255,255,255,0.18) !important;
+  margin: 14px 0 !important;
 }
 
-/* Alumni / Join us blocks */
-body.members-page .column_attr.big,
-body.members-page .column_attr.big * {
-  color: #e0e0e0;
-  font-size: clamp(16px, 1.6vw, 19px);
+/* Alumni / Join Us blocks (use .column_attr.big) */
+.column_attr.big,
+.column_attr.big p,
+.column_attr.big ul,
+.column_attr.big li {
+  font-size: calc(16px + (19 - 16) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.7 !important;
+  color: #e0e0e0 !important;
 }
 
-body.members-page .column_attr.big ul {
-  list-style: none;
-  padding-left: 0;
+/* Those blocks use <ul> with <br> */
+.column_attr.big ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
+
 
 /* =========================================================
-   HOME — hero subtitle polish only (no badge box)
+   HOME: Premium headline (NO box badge)
+   Keep your final preferred look
 ========================================================= */
 
-#Subheader h4.title {
-  margin-top: 26px;
-  margin-bottom: 18px;
-  font-size: clamp(26px, 2.6vw, 40px);
-  font-weight: 800;
-  text-align: center;
-  color: #ffffff;
-  text-shadow:
-    0 2px 0 rgba(0,0,0,0.55),
-    0 10px 26px rgba(0,0,0,0.45);
-  background: transparent;
-  border: none;
+#Subheader .container .column.one {
+  position: relative !important;
 }
 
-/* Gold rule under title */
+#Subheader h4.title {
+  margin-top: 26px !important;
+  margin-bottom: 18px !important;
+
+  font-size: clamp(26px, 2.6vw, 40px) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.6px !important;
+  line-height: 1.12 !important;
+  text-align: center !important;
+
+  color: #ffffff !important;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.55),
+    0 10px 26px rgba(0,0,0,0.45) !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+
+  position: relative !important;
+}
+
 #Subheader h4.title::after {
   content: "";
   display: block;
   width: min(420px, 72%);
   height: 2px;
-  margin: 14px auto 0;
+  margin: 14px auto 0 auto;
+  border-radius: 999px;
   background: linear-gradient(
     90deg,
     rgba(212,177,95,0),
     rgba(212,177,95,0.95),
     rgba(212,177,95,0)
   );
+  opacity: 0.95;
 }
 
-/* Soft spotlight */
 #Subheader h4.title::before {
   content: "";
   position: absolute;
@@ -307,12 +506,17 @@ body.members-page .column_attr.big ul {
   width: min(780px, 95%);
   height: 120%;
   background: radial-gradient(
-    circle at center,
-    rgba(255,255,255,0.06),
-    rgba(212,177,95,0.05),
+    circle at 50% 50%,
+    rgba(255,255,255,0.08),
+    rgba(212,177,95,0.06),
     transparent 70%
   );
   filter: blur(18px);
-  opacity: 0.5;
+  opacity: 0.55;
   z-index: -1;
+  pointer-events: none;
+}
+
+#Subheader img {
+  margin-bottom: 10px !important;
 }
