@@ -461,3 +461,69 @@ img {
   filter: brightness(0.97) contrast(1.02);
 }
 
+/* ===============================
+   Top Menu – dark theme refinement
+================================ */
+
+/* Menu container */
+#Top_bar {
+  background: #0b0b0b !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Menu items default */
+#menu > ul > li > a,
+#menu span {
+  color: #e0e0e0 !important;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+/* Restore gold hover effect */
+#menu > ul > li > a:hover,
+#menu > ul > li.current_page_item > a {
+  color: #d4b15f !important;   /* gold */
+}
+
+/* Subtle hover lift (feels responsive, not flashy) */
+#menu > ul > li > a:hover span {
+  transform: translateY(-1px);
+}
+
+/* Remove ugly theme background hover */
+#menu > ul > li:hover > a {
+  background: transparent !important;
+}
+
+/* Optional: subtle underline on hover */
+#menu > ul > li > a span {
+  position: relative;
+}
+
+#menu > ul > li > a span:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #d4b15f;
+  transition: width 0.25s ease;
+}
+
+#menu > ul > li > a:hover span:after,
+#menu > ul > li.current_page_item > a span:after {
+  width: 100%;
+}
+
+/* Mobile menu icon */
+.responsive-menu-toggle i {
+  color: #e0e0e0 !important;
+}
+
+/* Make menu spacing feel cleaner */
+#menu > ul > li > a {
+  padding: 18px 14px !important;
+}
+
