@@ -595,3 +595,56 @@ img {
 .column_our_team .icon_bar:hover i {
   color: #f2d37a !important;
 }
+
+/* =========================================================
+   FIX: white bar behind menu on dark theme
+   (put at VERY END of custom.css)
+========================================================= */
+
+/* Kill any theme-injected white backgrounds in the header/menu area */
+#Top_bar,
+#Top_bar .container,
+#Top_bar .top_bar_left,
+#Top_bar .menu_wrapper,
+#Top_bar .menu-main-menu-container,
+#Top_bar .menu,
+#Top_bar .menu > li,
+#Top_bar .menu > li > a,
+#Top_bar .logo,
+#Header_wrapper,
+#Header {
+  background: transparent !important;
+}
+
+/* Force the actual header area to be dark */
+#Header_wrapper,
+#Header,
+#Top_bar {
+  background-color: #0b0b0b !important;
+}
+
+/* Sometimes the theme adds a white "bar" via pseudo-elements */
+#Top_bar:before,
+#Top_bar:after,
+#Header_wrapper:before,
+#Header_wrapper:after {
+  background: transparent !important;
+}
+
+/* Menu text visibility (avoid washed out light gray) */
+#menu > ul > li > a,
+#menu > ul > li > a span {
+  color: #e0e0e0 !important;
+}
+
+/* Gold hover + current page */
+#menu > ul > li > a:hover,
+#menu > ul > li.current_page_item > a,
+#menu > ul > li.current_page_item > a span {
+  color: #d4b15f !important;
+}
+
+/* Optional: subtle bottom divider line */
+#Top_bar {
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
