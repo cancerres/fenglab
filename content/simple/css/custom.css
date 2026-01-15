@@ -61,12 +61,12 @@ a.mfn-link-1:after {
    GLOBAL DARK THEME (site-wide)
 ========================================================= */
 
-body {
+html, body {
   background: #0b0b0b !important;
   color: #e0e0e0 !important;
 }
 
-/* Keep general copy readable */
+/* General text */
 p, li, ul, ol, span, div {
   color: #e0e0e0;
 }
@@ -79,8 +79,10 @@ h1, h2, h3, h4, h5, h6 {
 a { color: #d4b15f; }
 a:hover { color: #f2d37a; }
 
-/* Make main wrappers dark */
+/* Main wrappers dark */
+#Wrapper,
 #Header_wrapper,
+#Header,
 #Top_bar,
 #Subheader,
 #Content,
@@ -92,19 +94,23 @@ a:hover { color: #f2d37a; }
   color: #e0e0e0 !important;
 }
 
-/* Horizontal rules */
-hr { border-color: rgba(255,255,255,0.15) !important; }
+/* Rules */
+hr {
+  border-color: rgba(255,255,255,0.15) !important;
+}
 
 /* Slightly soften images on dark */
-img { filter: brightness(0.97) contrast(1.02); }
+img {
+  filter: brightness(0.97) contrast(1.02);
+}
 
 
 /* =========================================================
    HARD FIX: Remove WHITE STRIP / WHITE HEADER BACKGROUND
-   (this is the exact issue in your screenshot)
+   (fixes the “publication-only white band” screenshot)
 ========================================================= */
 
-/* Theme sometimes paints white blocks on .container/.top_bar_left */
+/* Force header region to dark, including theme containers */
 #Header_wrapper,
 #Header,
 #Top_bar,
@@ -113,32 +119,30 @@ img { filter: brightness(0.97) contrast(1.02); }
 #Top_bar .top_bar_left,
 #Top_bar .menu_wrapper,
 #Top_bar .menu-main-menu-container,
-#Top_bar .logo {
-  background: #0b0b0b !important;
+#Top_bar .logo,
+#Top_bar .menu,
+#Top_bar ul,
+#Top_bar li,
+#Top_bar nav {
+  background-color: #0b0b0b !important;
 }
 
-/* Kill any “panel” / pseudo-element backgrounds in header */
+/* Theme sometimes uses pseudo-elements for bars */
 #Header_wrapper:before,
 #Header_wrapper:after,
-#Top_bar:before,
-#Top_bar:after,
 #Header:before,
-#Header:after {
+#Header:after,
+#Top_bar:before,
+#Top_bar:after {
   background: transparent !important;
 }
 
-/* Some themes set container background directly */
-#Header_wrapper .container,
-#Top_bar .container {
-  background: transparent !important;
-}
-
-/* Prevent any inner wrappers from turning white */
+/* Kill any “white panel” blocks inside header */
 #Top_bar * {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
-/* Ensure header border looks intentional */
+/* Put back one intentional divider */
 #Top_bar {
   border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
@@ -215,21 +219,241 @@ img { filter: brightness(0.97) contrast(1.02); }
 
 
 /* =========================================================
-   FEATURED PUBLICATIONS
-   FIXES:
-   - grid authoritative (no floats)
-   - no overlap / stacking
-   - equal height cards
-   - titles stay gold
+   FEATURED PUBLICATIONS (grid + equal height)
+   Fixes:
+   - cards overlapping/stacking
+   - equal height
+   - keep cards light while page is dark
+   - restore gold title
 ========================================================= */
 
-.featured-pubs {
-  margin: 10px 0 40px 0;
+/* Grid wrapper */
+.featured-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: stretch; /* equal-height row behavior */
 }
 
-.featured-pubs-title h2,
-.featured-pubs h2 {
-  font-size: 28px;
+/* Neutralize theme column floats/padding inside our grid */
+.featured-grid > .column {
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+/* If theme wraps stuff with column_attr, make it stretch */
+.featured-grid > .column .column_attr {
+  width: 100%;
+}
+
+/* Whole-card link wrapper must be block and stretch */
+.featured-link {
+  display: flex;
+  width: 100%;
+  text-decoration: none !important;
+  align-items: stretch;
+}
+
+/* The card */
+.featured-card {
+  background: #ffffff !important;
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+/* Hover */
+.featured-link:hover .featured-card {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.14);
+}
+
+/* Cover image */
+.featured-card .cover {
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
+  background: #fff;
+  display: block;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  filter: none; /* don’t dim inside white card */
+}
+
+/* Featured title (restore gold!) */
+.featured-card .pub-title {
+  font-size: 1.35em;
+  line-height: 1.3;
   font-weight: 700;
-  text-align: left;
-  margin:
+  color: #c89a2b !important; /* dark gold */
+  margin: 0 0 14px 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.featured-link:hover .pub-title {
+  color: #a87f1f !important;
+}
+
+/* Authors / meta (dark text inside card) */
+.featured-card .pub-authors {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 0 0 10px 0;
+  color: #555 !important;
+}
+
+.featured-card .pub-meta {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333 !important;
+  margin-top: auto; /* pin to bottom */
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .featured-card .cover {
+    height: 280px;
+  }
+}
+
+
+/* =========================================================
+   MEMBERS PAGE: wider columns + bigger photos + readable text
+========================================================= */
+
+/* Wider team “columns” (theme uses floats; override carefully) */
+.column_our_team {
+  width: 42% !important;
+  margin-left: 4% !important;
+  margin-right: 4% !important;
+  float: left !important;
+}
+
+/* Make sure row can contain floated children */
+.items_group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Smaller screens: one per row */
+@media (max-width: 1100px) {
+  .column_our_team {
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+  }
+}
+
+/* Photo frame larger */
+.column_our_team .image_frame {
+  transform: none !important;
+  width: 280px !important;
+  height: 280px !important;
+  margin: 0 auto !important;
+}
+
+/* Image fill */
+.column_our_team .image_wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  margin-left: 0 !important;
+  max-width: none !important;
+}
+
+/* Ensure truly circular */
+.column_our_team .image_frame,
+.column_our_team .image_wrapper,
+.column_our_team img {
+  border-radius: 50% !important;
+}
+
+/* Members text must be visible on dark */
+.column_our_team,
+.column_our_team * {
+  color: #e0e0e0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Typography scale similar to Home rules */
+.column_our_team h4 {
+  font-size: calc(22px + (30 - 22) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+}
+
+.column_our_team .subtitle {
+  font-size: calc(16px + (20 - 16) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.45 !important;
+  color: #cfcfcf !important;
+}
+
+.column_our_team .desc {
+  font-size: calc(16px + (19 - 16) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.6 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Divider line */
+.column_our_team .hr_color {
+  border-color: rgba(255,255,255,0.18) !important;
+  margin: 14px 0 !important;
+}
+
+/* Alumni / Join Us blocks (use .column_attr.big) */
+.column_attr.big,
+.column_attr.big p,
+.column_attr.big ul,
+.column_attr.big li {
+  font-size: calc(16px + (19 - 16) * ((100vw - 400px) / (1200 - 400))) !important;
+  line-height: 1.7 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Those blocks use <ul> with <br> */
+.column_attr.big ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Email icon */
+.column_our_team .icon_bar i {
+  color: #d4b15f !important;
+}
+.column_our_team .icon_bar:hover i {
+  color: #f2d37a !important;
+}
