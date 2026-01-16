@@ -632,15 +632,15 @@ img {
 }
 
 /* ===============================
-   Full-width News banner
+   Full-width News banner (no crop)
 ================================ */
 
 .news-banner {
-  width: 100vw;                 /* full viewport width */
+  width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;           /* break out of container */
+  margin-left: -50vw;
   margin-right: -50vw;
 
   background: #0b0b0b;
@@ -649,7 +649,7 @@ img {
 
 .news-banner img {
   display: block;
-  width: 100%;
-  height: 120px;               /* narrow strip feel */
-  object-fit: cover;
+  width: 100%;        /* stretch across page */
+  height: auto;       /* keep full image */
+  object-fit: contain;
 }
