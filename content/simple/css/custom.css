@@ -611,8 +611,8 @@ img {
 
 /* The whole timeline item title line */
 .timeline_items li h3 {
-  font-size: 22px !important;   /* was smaller; bump headline */
-  line-height: 1.4 !important;
+  font-size: 26px !important;
+  line-height: 1.35 !important;
 }
 
 /* The date part (inside <span>) */
