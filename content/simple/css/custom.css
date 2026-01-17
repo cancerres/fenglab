@@ -17,6 +17,11 @@
   margin-bottom: 30px;
 }
 
+/* Subtle spacing polish only */
+.zlab_caption {
+  margin-top: 12px !important;
+  margin-bottom: 10px !important;
+}
 
 /* ===============================
    Theme Link Brackets Tweaks
@@ -68,9 +73,16 @@ html, body {
 }
 
 /* General text */
-p, li, ul, ol, span, div {
+/* Replace the global blanket rule with a scoped one */
+#Content p,
+#Content li,
+#Content ul,
+#Content ol,
+#Content span,
+#Content div {
   color: #e0e0e0;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   color: #ffffff !important;
@@ -343,6 +355,12 @@ img {
   }
 }
 
+/* Make either .featured-item OR theme columns behave the same */
+.featured-grid > .featured-item,
+.featured-grid > .column {
+  display: flex !important;
+  align-items: stretch !important;
+}
 
 /* =========================================================
    MEMBERS PAGE: wider columns + bigger photos + readable text
@@ -533,15 +551,6 @@ img {
 #Top_bar .top_bar_left {
   padding-top: 8px !important;
   padding-bottom: 8px !important;
-}
-
-/* Reduce the lab caption size (logo text) without changing fonts elsewhere */
-.zlab_caption {
-  font-size: clamp(26px, 3.0vw, 38px) !important; /* smaller than before */
-  margin-top: 12px !important;
-  margin-bottom: 10px !important;
-  line-height: 1.05 !important;
-  letter-spacing: 0.6px !important;
 }
 
 /* If you have a tagline line under the caption, keep it subtle (optional) */
@@ -891,4 +900,11 @@ img {
 .contact-page .get_in_touch ul,
 .contact-page .get_in_touch li{
   width: 100% !important;
+}
+
+@media (max-width: 767px){
+  .timeline_items li:after{
+    left: 20px !important;   /* match theme’s mobile axis position */
+    transform: none !important;
+  }
 }
