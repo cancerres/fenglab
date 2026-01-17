@@ -886,3 +886,37 @@ img {
 .get_in_touch .mail p {
   margin: 0 !important;
 }
+
+/* =========================================================
+   CONTACT PAGE ONLY — bold gold icon blocks
+========================================================= */
+
+.contact-page .get_in_touch .icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #d4b15f;
+  border-radius: 10px;
+  margin-right: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+}
+
+.contact-page .get_in_touch .icon i {
+  font-size: 22px !important;
+  color: #111 !important;
+}
+
+.contact-page .get_in_touch li {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 18px !important;
+}
+
+.contact-page .get_in_touch .address_wrapper,
+.contact-page .get_in_touch .phone p,
+.contact-page .get_in_touch .mail p {
+  margin: 0 !important;
+}
