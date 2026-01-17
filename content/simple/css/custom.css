@@ -809,3 +809,42 @@ img {
   }
 }
 
+/* =========================================================
+   CONTACT PAGE — make text larger + consistent with other tabs
+========================================================= */
+
+/* Main contact text (address, phone, email) */
+.get_in_touch,
+.get_in_touch p,
+.get_in_touch li,
+.get_in_touch .address_wrapper {
+  font-size: 18px !important;
+  line-height: 1.65 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Bold labels like "Office Address" */
+.get_in_touch strong {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
+
+/* Icons (location, phone, mail) */
+.get_in_touch .icon i {
+  font-size: 22px !important;
+  color: #d4b15f !important; /* keep your gold accent */
+}
+
+/* Phone/email lines */
+.get_in_touch .phone p,
+.get_in_touch .mail p {
+  font-size: 18px !important;
+}
+
+/* Subheader title on Contact page */
+#Subheader h1.title {
+  font-size: clamp(30px, 3vw, 42px) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.4px !important;
+}
