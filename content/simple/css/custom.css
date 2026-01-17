@@ -908,3 +908,77 @@ img {
     transform: none !important;
   }
 }
+
+/* =========================================================
+   CONTACT PAGE — STOP ICON/TEXT OVERLAP (FINAL HOTFIX)
+   Requires: <body class="... contact-page">
+   Paste at VERY END of custom.css
+========================================================= */
+
+/* Make each row a true 2-column layout */
+.contact-page .get_in_touch ul li {
+  display: grid !important;
+  grid-template-columns: 56px 1fr !important;  /* icon | text */
+  column-gap: 16px !important;
+  align-items: start !important;
+  margin-bottom: 18px !important;
+
+  /* kill weird theme positioning */
+  position: relative !important;
+  padding: 0 !important;
+}
+
+/* Gold icon block */
+.contact-page .get_in_touch ul li .icon {
+  width: 56px !important;
+  height: 56px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #d4b15f !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.45) !important;
+
+  /* ensure it stays in the left column */
+  margin: 0 !important;
+}
+
+/* Dark icon inside */
+.contact-page .get_in_touch ul li .icon i {
+  font-size: 22px !important;
+  color: #111 !important;
+  line-height: 1 !important;
+}
+
+/* FORCE text wrappers into the second column and remove theme offsets */
+.contact-page .get_in_touch ul li .address_wrapper,
+.contact-page .get_in_touch ul li p {
+  grid-column: 2 !important;
+
+  /* theme often adds padding/position that causes overlap */
+  padding-left: 0 !important;
+  margin: 0 !important;
+  position: static !important;
+
+  min-width: 0 !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+/* keep your text sizing */
+.contact-page .get_in_touch,
+.contact-page .get_in_touch p,
+.contact-page .get_in_touch li,
+.contact-page .get_in_touch .address_wrapper {
+  font-size: 18px !important;
+  line-height: 1.65 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Bold label line */
+.contact-page .get_in_touch strong {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
