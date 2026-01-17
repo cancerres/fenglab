@@ -1043,13 +1043,24 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
 }
 
 /* ===============================
-   FEATURED PAPERS — one-line tagline
+   FEATURED PAPERS — spacing + tagline color
 ================================ */
 
+/* Reduce space between authors and journal */
+.featured-card .pub-authors {
+  margin-bottom: 4px !important;   /* was larger before */
+}
+
+/* Reduce space between journal and tagline */
+.featured-card .pub-meta {
+  margin-bottom: 2px !important;
+}
+
+/* Tagline styling: black, clean, tight */
 .featured-card .pub-tagline {
   font-size: 1.05em;
-  line-height: 1.55;
-  margin: 6px 0 0 0;
-  color: rgba(0,0,0,0.75);      /* subtle on white card */
+  line-height: 1.5;
+  margin: 2px 0 0 0 !important;
+  color: #000000 !important;       /* force true black */
   font-style: italic;
 }
