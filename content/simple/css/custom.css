@@ -1184,7 +1184,7 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
 
 /* Control logo distance from text */
 #Top_bar .header-logo-col {
-  margin-right: 8px !important;   /* ← adjust 4–12px only */
+  margin-right: 10px !important;   /* ← adjust 4–12px only */
 }
 
 /* Menu font size (safe, isolated) */
