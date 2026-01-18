@@ -1094,59 +1094,11 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
 }
 
 /* =========================================================
-   HEADER — tall logo spanning caption + menu (scoped + safe)
-========================================================= */
-
-/* Make the whole left header area a 2-column row */
-#Top_bar .top_bar_left{
-  display: flex !important;
-  align-items: stretch !important;     /* key: children match full height */
-  gap: 6px !important;             /* gap between logo and title, was 18px → now tighter */
-}
-
-/* Left column: logo fills the header stack height */
-#Top_bar .header-logo-col{
-  display: flex !important;
-  align-items: center !important;      /* center logo within the total height */
-  flex: 0 0 auto !important;
-}
-
-/* The actual logo */
-#Top_bar .lab-logo-tall{
-  height: 100% !important;             /* span caption + menu height */
-  max-height: 150px !important;        /* safety cap: prevents “huge” */
-  width: auto !important;
-  object-fit: contain !important;
-  filter: none !important;
-  display: block !important;
-}
-
-/* Right column: caption + menu stack vertically */
-#Top_bar .header-text-col{
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  min-width: 0 !important;
-  flex: 1 1 auto !important;
-}
-
-/* Keep caption margins from creating weird height */
-#Top_bar .header-text-col .zlab_caption{
-  margin: 0 0 6px 0 !important;
-}
-
-/* Ensure menu stays in its usual place */
-#Top_bar .header-text-col .menu_wrapper{
-  margin-top: 0 !important;
-}
-
-
-/* =========================================================
-   HEADER — ONE clean layout for your exact HTML
+   HEADER — FINAL CLEAN LAYOUT (your exact HTML structure)
    .top_bar_left { .header-logo-col + .header-text-col }
 ========================================================= */
 
-/* Ensure theme isn't floating things weirdly */
+/* Layout: logo + (title + menu) stay together */
 #Top_bar .top_bar_left{
   float: none !important;
   width: auto !important;
@@ -1155,7 +1107,12 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   align-items: center !important;
   justify-content: flex-start !important;
 
-  gap: 8px !important;              /* space between logo and (title+menu) */
+  gap: 10px !important;              /* space between logo and text/menu */
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+
+  /* THIS is the only knob you change to move everything right */
+  padding-left: 36px !important;     /* try 24px → 36px → 48px → 60px */
 }
 
 /* Logo column */
@@ -1165,9 +1122,6 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   align-items: center !important;
   margin: 0 !important;
   padding: 0 !important;
-
-  /* NUDGE LOGO RIGHT without affecting menu */
-  margin-left: 18px !important;     /* <-- adjust 0–30px */
 }
 
 /* Logo image */
@@ -1175,7 +1129,7 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   display: block !important;
   width: auto !important;
   height: 100% !important;
-  max-height: 120px !important;
+  max-height: 120px !important;      /* safety cap */
   object-fit: contain !important;
   filter: none !important;
 }
@@ -1188,133 +1142,26 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-
-  gap: 6px !important;              /* caption ↔ menu spacing */
+  gap: 6px !important;
 }
 
-/* Remove margins that push stuff around */
-#Top_bar .header-text-col .logo,
-#Top_bar .header-text-col .menu_wrapper{
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Caption spacing */
-#Top_bar .header-text-col .zlab_caption{
-  margin: 0 !important;
-}
-
-/* Menu should stay in normal flow (do NOT flex the container/column globally) */
-#Top_bar #menu,
-#Top_bar #menu > ul,
-#Top_bar #menu-main-menu{
-  margin: 0 !important;
-  padding-left: 0 !important;
-}
-
-/* =========================================================
-   HEADER — pull logo closer to caption/menu (FINAL)
-   Paste as the LAST block in custom.css
-========================================================= */
-
-/* 1) Kill theme padding/margins that create the left gap */
-#Top_bar .top_bar_left{
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;          /* controls logo-to-text gap */
-}
-
-/* Theme sometimes adds padding on this wrapper */
-#Top_bar .container,
-#Top_bar .container .column.one{
-  padding-left: 0 !important;
-}
-
-/* 2) Logo column: no reserved spacing */
-#Top_bar .header-logo-col{
-  margin: 0 !important;
-  padding: 0 !important;
-  flex: 0 0 auto !important;
-}
-
-/* 3) IMPORTANT: theme .logo often has width/margins that push everything */
-#Top_bar .header-text-col .logo{
-  width: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 4) If the theme is applying a left indent to the menu wrapper/ul */
-#Top_bar .header-text-col .menu_wrapper,
-#Top_bar #menu,
-#Top_bar #menu > ul,
-#Top_bar #menu-main-menu{
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
-
-/* 5) Nudge logo RIGHT without moving menu/title (if still needed) */
-#Top_bar .header-logo-col{
-  transform: translateX(14px) !important;  /* try 8px–24px */
-}
-
-/* Keep logo stable */
-#Top_bar img.lab-logo-tall{
-  max-height: 120px !important;
-  width: auto !important;
-  display: block !important;
-  filter: none !important;
-}
-
-#Top_bar .header-inner { transform: translateX(12px); }
-
-/* DEBUG: force the logo to move right no matter what */
-#Top_bar .top_bar_left .header-logo-col{
-  margin-left: 150px !important;      /* increase this: 30px, 40px to test */
-  padding-left: 0 !important;
-  transform: none !important;         /* avoid conflicts */
-}
-
-/* If the theme positions the image itself oddly, move the image */
-#Top_bar .top_bar_left .header-logo-col img.lab-logo-tall{
-  position: relative !important;
-  left: 130px !important;              /* increase this too if needed */
-}
-
-/* Fix logo being hidden behind header layers */
-#Top_bar,
-#Top_bar * {
-  overflow: visible !important;
-}
-
-/* Force logo above all header layers */
-#Top_bar .header-logo-col {
-  position: relative !important;
-  z-index: 9999 !important;
-}
-
-#Top_bar img.lab-logo-tall {
-  position: relative !important;
-  z-index: 9999 !important;
-}
-
-/* Header only: give the title a little breathing room */
+/* Title spacing (header only) */
 #Top_bar .zlab_caption{
-  padding-top: 6px !important;   /* try 4–10px */
-  margin-top: 0 !important;      /* don’t fight padding + margin both */
+  margin: 0 !important;
+  padding-top: 6px !important;
 }
 
-/* Header only: restore menu font size + vertical rhythm */
+/* Kill theme indentation on menu */
+#Top_bar #menu,
+#Top_bar #menu > ul,
+#Top_bar #menu-main-menu{
+  margin: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Restore normal menu font size */
 #Top_bar #menu > ul > li > a,
 #Top_bar #menu > ul > li > a span{
-  font-size: 20px !important;   /* try 15px or 17px to match your old look */
+  font-size: 16px !important;
   line-height: 1.2 !important;
-}
-
-/* Header only: restore comfortable header height */
-#Top_bar .top_bar_left{
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
 }
