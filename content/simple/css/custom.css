@@ -1140,52 +1140,6 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   margin-top: 0 !important;
 }
 
-/* =========================================================
-   HEADER — FORCE logo closer to caption/menu (works with theme HTML)
-   Paste at VERY END of custom.css
-========================================================= */
-
-/* 1) Make the left header region a flex row */
-#Top_bar .top_bar_left{
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* 2) Kill spacing coming from theme containers */
-#Top_bar .logo,
-#Top_bar .menu_wrapper{
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 3) If the theme reserves width for .logo, remove it */
-#Top_bar .logo{
-  width: auto !important;
-  flex: 0 0 auto !important;
-}
-
-/* 4) Put a tight, controlled gap between logo block and menu block */
-#Top_bar .logo{
-  margin-right: 8px !important;   /* <-- adjust (4px–12px) */
-}
-
-/* 5) If menu has a hidden left offset, remove it */
-#Top_bar #menu,
-#Top_bar #menu > ul,
-#Top_bar .menu-main-menu-container{
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
-
-/* 6) If your tall logo is an <img>, keep it behaving */
-#Top_bar .logo img,
-#Top_bar img.lab-logo-tall{
-  display: block !important;
-  height: 100% !important;
-  max-height: 150px !important;
-  width: auto !important;
-  object-fit: contain !important;
-}
 
 /* =========================================================
    HEADER — reduce gap between LEFT (logo/caption) and RIGHT (menu)
@@ -1364,4 +1318,56 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   object-fit: contain !important;
   display: block !important;
   filter: none !important;
+}
+
+/* =========================================================
+   HEADER — logo + (title/menu) together, without shifting whole bar
+   Uses your HTML: .header-logo-col + .header-text-col inside .top_bar_left
+========================================================= */
+
+/* 1) Layout: logo column + text/menu column */
+#Top_bar .top_bar_left{
+  display: flex !important;
+  align-items: stretch !important;   /* logo matches total stack height */
+}
+
+/* 2) DO NOT move the whole header — keep theme container padding */
+#Top_bar .container,
+#Top_bar .column.one{
+  padding-left: initial !important;
+  padding-right: initial !important;
+}
+
+/* 3) Control ONLY the spacing between logo and the text/menu block */
+#Top_bar .header-logo-col{
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 8px !important;   /* <-- adjust this (4–14px) */
+}
+
+#Top_bar .header-text-col{
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* 4) Make the logo span the height of title+menu (but cap it) */
+#Top_bar img.lab-logo-tall{
+  height: 100% !important;
+  max-height: 120px !important;  /* safety */
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  filter: none !important;
+}
+
+/* 5) Tighten vertical spacing inside the stack (optional) */
+#Top_bar .header-text-col .zlab_caption{
+  margin: 0 0 6px 0 !important;
+}
+#Top_bar .header-text-col .menu_wrapper{
+  margin-top: 0 !important;
 }
