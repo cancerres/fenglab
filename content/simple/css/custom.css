@@ -1309,7 +1309,7 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
 /* Header only: restore menu font size + vertical rhythm */
 #Top_bar #menu > ul > li > a,
 #Top_bar #menu > ul > li > a span{
-  font-size: 18px !important;   /* try 15px or 17px to match your old look */
+  font-size: 20px !important;   /* try 15px or 17px to match your old look */
   line-height: 1.2 !important;
 }
 
