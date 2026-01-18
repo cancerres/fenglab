@@ -1092,3 +1092,50 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
 }
+
+/* =========================================================
+   HEADER — tall logo spanning caption + menu (scoped + safe)
+========================================================= */
+
+/* Make the whole left header area a 2-column row */
+#Top_bar .top_bar_left{
+  display: flex !important;
+  align-items: stretch !important;     /* key: children match full height */
+  gap: 18px !important;
+}
+
+/* Left column: logo fills the header stack height */
+#Top_bar .header-logo-col{
+  display: flex !important;
+  align-items: center !important;      /* center logo within the total height */
+  flex: 0 0 auto !important;
+}
+
+/* The actual logo */
+#Top_bar .lab-logo-tall{
+  height: 100% !important;             /* span caption + menu height */
+  max-height: 150px !important;        /* safety cap: prevents “huge” */
+  width: auto !important;
+  object-fit: contain !important;
+  filter: none !important;
+  display: block !important;
+}
+
+/* Right column: caption + menu stack vertically */
+#Top_bar .header-text-col{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+/* Keep caption margins from creating weird height */
+#Top_bar .header-text-col .zlab_caption{
+  margin: 0 0 6px 0 !important;
+}
+
+/* Ensure menu stays in its usual place */
+#Top_bar .header-text-col .menu_wrapper{
+  margin-top: 0 !important;
+}
