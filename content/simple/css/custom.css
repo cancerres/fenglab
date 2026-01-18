@@ -1320,3 +1320,48 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
 #Top_bar .logo{
   width: auto !important;
 }
+
+/* =========================================================
+   HEADER — move LOGO right (toward menu), keep menu in place
+========================================================= */
+
+/* Make sure our two-column layout stays */
+#Top_bar .top_bar_left{
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+/* REMOVE any theme padding that keeps the logo stuck left */
+#Top_bar .top_bar_left{
+  padding-left: 0 !important;
+}
+
+/* The container/column often adds left padding in this theme */
+#Top_bar .container,
+#Top_bar .column.one{
+  padding-left: 0 !important;
+}
+
+/* If the theme gives the logo block its own left margin/padding, kill it */
+#Top_bar .header-logo-col{
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+
+  /* NUDGE RIGHT: adjust this */
+  transform: translateX(18px) !important;  /* try 12px–30px */
+}
+
+/* Keep the gap between logo and the text/menu tight */
+#Top_bar .top_bar_left{
+  gap: 10px !important;  /* adjust 6–14px */
+}
+
+/* Safety: keep logo size stable */
+#Top_bar img.lab-logo-tall{
+  max-height: 120px !important;
+  width: auto !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  filter: none !important;
+}
