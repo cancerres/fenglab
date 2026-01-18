@@ -1211,3 +1211,59 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   margin: 0 !important;
   padding-left: 0 !important;
 }
+
+/* =========================================================
+   HEADER — pull logo closer to caption/menu (FINAL)
+   Paste as the LAST block in custom.css
+========================================================= */
+
+/* 1) Kill theme padding/margins that create the left gap */
+#Top_bar .top_bar_left{
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;          /* controls logo-to-text gap */
+}
+
+/* Theme sometimes adds padding on this wrapper */
+#Top_bar .container,
+#Top_bar .container .column.one{
+  padding-left: 0 !important;
+}
+
+/* 2) Logo column: no reserved spacing */
+#Top_bar .header-logo-col{
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+/* 3) IMPORTANT: theme .logo often has width/margins that push everything */
+#Top_bar .header-text-col .logo{
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 4) If the theme is applying a left indent to the menu wrapper/ul */
+#Top_bar .header-text-col .menu_wrapper,
+#Top_bar #menu,
+#Top_bar #menu > ul,
+#Top_bar #menu-main-menu{
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* 5) Nudge logo RIGHT without moving menu/title (if still needed) */
+#Top_bar .header-logo-col{
+  transform: translateX(14px) !important;  /* try 8px–24px */
+}
+
+/* Keep logo stable */
+#Top_bar img.lab-logo-tall{
+  max-height: 120px !important;
+  width: auto !important;
+  display: block !important;
+  filter: none !important;
+}
