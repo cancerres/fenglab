@@ -1239,3 +1239,84 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   margin-left: 0 !important;
   padding-left: 0 !important;
 }
+
+/* =========================================================
+   HEADER — FINAL: logo tight to caption/menu (your exact HTML)
+   Structure:
+   .top_bar_left { .header-logo-col + .header-text-col }
+========================================================= */
+
+/* 1) Make top_bar_left a true 2-column flex row */
+#Top_bar .top_bar_left{
+  display: flex !important;
+  align-items: stretch !important;     /* logo can match full stack height */
+  justify-content: flex-start !important;
+  gap: 10px !important;               /* <-- adjust to 4–12px */
+}
+
+/* 2) Remove any theme spacing that creates the “mystery gap” */
+#Top_bar .header-logo-col,
+#Top_bar .header-text-col,
+#Top_bar .logo,
+#Top_bar .menu_wrapper{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3) Left column: logo wrapper stays tight */
+#Top_bar .header-logo-col{
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;      /* centers logo within full height */
+}
+
+/* 4) The logo image: tall but hard-capped (prevents huge) */
+#Top_bar img.lab-logo-tall{
+  height: 100% !important;             /* fill the header stack height */
+  max-height: 120px !important;        /* <-- safety cap (90–140) */
+  width: auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+
+/* 5) Right column: caption + menu stack */
+#Top_bar .header-text-col{
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 6px !important;                 /* space between caption and menu */
+}
+
+/* 6) Caption: no extra margins that inflate height */
+#Top_bar .header-text-col .zlab_caption{
+  margin: 0 !important;
+}
+
+/* 7) Kill hidden menu offsets */
+#Top_bar .menu_wrapper,
+#Top_bar #menu,
+#Top_bar #menu > ul,
+#Top_bar .menu-main-menu-container{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Some themes add padding-left to UL */
+#Top_bar #menu-main-menu{
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* 8) If the menu wrapper is behaving like a block with left indent, force it */
+#Top_bar .menu_wrapper{
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Optional: make sure nothing is reserving width weirdly */
+#Top_bar .logo{
+  width: auto !important;
+}
