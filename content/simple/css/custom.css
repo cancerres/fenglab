@@ -1142,232 +1142,72 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
 
 
 /* =========================================================
-   HEADER — reduce gap between LEFT (logo/caption) and RIGHT (menu)
-   Works when menu is in .top_bar_right (common in Muffin/BeTheme)
-   Paste at VERY END of custom.css
-========================================================= */
-
-/* Make the Top_bar inner layout a flex row (left + right) */
-#Top_bar .container .column.one .top_bar_left,
-#Top_bar .container .column.one .top_bar_right{
-  float: none !important;
-}
-
-/* Most themes already have a wrapper like .top_bar_inner or .top_bar_left/.top_bar_right.
-   Force the parent to flex so spacing is controllable. */
-#Top_bar .container .column.one .top_bar_left{
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* If the theme uses a parent wrapper, this catches it */
-#Top_bar .top_bar_left,
-#Top_bar .top_bar_right{
-  display: inline-flex !important;
-  vertical-align: middle !important;
-}
-
-/* Key: shrink reserved width on the left so the right can come closer */
-#Top_bar .top_bar_left{
-  width: auto !important;
-  flex: 0 0 auto !important;
-}
-
-/* Key: remove any forced margins/padding pushing menu away */
-#Top_bar .top_bar_right{
-  margin-left: 10px !important;     /* <-- adjust this: 0 to 16 */
-  padding-left: 0 !important;
-}
-
-/* If the theme is distributing space with "justify-content: space-between", kill that */
-#Top_bar .container,
-#Top_bar .container .column.one{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;   /* not space-between */
-  gap: 10px !important;                     /* controls the gap now */
-}
-
-/* Ensure menu wrapper doesn't re-add left spacing */
-#Top_bar .top_bar_right .menu_wrapper{
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
-
-/* =========================================================
-   HEADER — FINAL: logo tight to caption/menu (your exact HTML)
-   Structure:
+   HEADER — ONE clean layout for your exact HTML
    .top_bar_left { .header-logo-col + .header-text-col }
 ========================================================= */
 
-/* 1) Make top_bar_left a true 2-column flex row */
+/* Ensure theme isn't floating things weirdly */
 #Top_bar .top_bar_left{
+  float: none !important;
+  width: auto !important;
+
   display: flex !important;
-  align-items: stretch !important;     /* logo can match full stack height */
+  align-items: center !important;
   justify-content: flex-start !important;
-  gap: 10px !important;               /* <-- adjust to 4–12px */
+
+  gap: 8px !important;              /* space between logo and (title+menu) */
 }
 
-/* 2) Remove any theme spacing that creates the “mystery gap” */
-#Top_bar .header-logo-col,
-#Top_bar .header-text-col,
-#Top_bar .logo,
-#Top_bar .menu_wrapper{
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 3) Left column: logo wrapper stays tight */
+/* Logo column */
 #Top_bar .header-logo-col{
   flex: 0 0 auto !important;
   display: flex !important;
-  align-items: center !important;      /* centers logo within full height */
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  /* NUDGE LOGO RIGHT without affecting menu */
+  margin-left: 18px !important;     /* <-- adjust 0–30px */
 }
 
-/* 4) The logo image: tall but hard-capped (prevents huge) */
+/* Logo image */
 #Top_bar img.lab-logo-tall{
-  height: 100% !important;             /* fill the header stack height */
-  max-height: 120px !important;        /* <-- safety cap (90–140) */
-  width: auto !important;
   display: block !important;
+  width: auto !important;
+  height: 100% !important;
+  max-height: 120px !important;
   object-fit: contain !important;
   filter: none !important;
 }
 
-/* 5) Right column: caption + menu stack */
+/* Text/menu column */
 #Top_bar .header-text-col{
   flex: 1 1 auto !important;
   min-width: 0 !important;
+
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-  gap: 6px !important;                 /* space between caption and menu */
+
+  gap: 6px !important;              /* caption ↔ menu spacing */
 }
 
-/* 6) Caption: no extra margins that inflate height */
+/* Remove margins that push stuff around */
+#Top_bar .header-text-col .logo,
+#Top_bar .header-text-col .menu_wrapper{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Caption spacing */
 #Top_bar .header-text-col .zlab_caption{
   margin: 0 !important;
 }
 
-/* 7) Kill hidden menu offsets */
-#Top_bar .menu_wrapper,
+/* Menu should stay in normal flow (do NOT flex the container/column globally) */
 #Top_bar #menu,
 #Top_bar #menu > ul,
-#Top_bar .menu-main-menu-container{
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Some themes add padding-left to UL */
 #Top_bar #menu-main-menu{
+  margin: 0 !important;
   padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-/* 8) If the menu wrapper is behaving like a block with left indent, force it */
-#Top_bar .menu_wrapper{
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* Optional: make sure nothing is reserving width weirdly */
-#Top_bar .logo{
-  width: auto !important;
-}
-
-/* =========================================================
-   HEADER — move LOGO right (toward menu), keep menu in place
-========================================================= */
-
-/* Make sure our two-column layout stays */
-#Top_bar .top_bar_left{
-  display: flex !important;
-  align-items: stretch !important;
-}
-
-/* REMOVE any theme padding that keeps the logo stuck left */
-#Top_bar .top_bar_left{
-  padding-left: 0 !important;
-}
-
-/* The container/column often adds left padding in this theme */
-#Top_bar .container,
-#Top_bar .column.one{
-  padding-left: 0 !important;
-}
-
-/* If the theme gives the logo block its own left margin/padding, kill it */
-#Top_bar .header-logo-col{
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-
-  /* NUDGE RIGHT: adjust this */
-  transform: translateX(18px) !important;  /* try 12px–30px */
-}
-
-/* Keep the gap between logo and the text/menu tight */
-#Top_bar .top_bar_left{
-  gap: 10px !important;  /* adjust 6–14px */
-}
-
-/* Safety: keep logo size stable */
-#Top_bar img.lab-logo-tall{
-  max-height: 120px !important;
-  width: auto !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  display: block !important;
-  filter: none !important;
-}
-
-/* =========================================================
-   HEADER — logo + (title/menu) together, without shifting whole bar
-   Uses your HTML: .header-logo-col + .header-text-col inside .top_bar_left
-========================================================= */
-
-/* 1) Layout: logo column + text/menu column */
-#Top_bar .top_bar_left{
-  display: flex !important;
-  align-items: stretch !important;   /* logo matches total stack height */
-}
-
-/* 2) DO NOT move the whole header — keep theme container padding */
-#Top_bar .container,
-#Top_bar .column.one{
-  padding-left: initial !important;
-  padding-right: initial !important;
-}
-
-/* 3) Control ONLY the spacing between logo and the text/menu block */
-#Top_bar .header-logo-col{
-  flex: 0 0 auto !important;
-  display: flex !important;
-  align-items: center !important;
-  margin-right: 8px !important;   /* <-- adjust this (4–14px) */
-}
-
-#Top_bar .header-text-col{
-  flex: 1 1 auto !important;
-  min-width: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
-
-/* 4) Make the logo span the height of title+menu (but cap it) */
-#Top_bar img.lab-logo-tall{
-  height: 100% !important;
-  max-height: 120px !important;  /* safety */
-  width: auto !important;
-  object-fit: contain !important;
-  display: block !important;
-  filter: none !important;
-}
-
-/* 5) Tighten vertical spacing inside the stack (optional) */
-#Top_bar .header-text-col .zlab_caption{
-  margin: 0 0 6px 0 !important;
-}
-#Top_bar .header-text-col .menu_wrapper{
-  margin-top: 0 !important;
 }
