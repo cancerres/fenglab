@@ -1299,3 +1299,22 @@ body.contact-page .get_in_touch li.phone span.icon i.icon-phone{
   position: relative !important;
   z-index: 9999 !important;
 }
+
+/* Header only: give the title a little breathing room */
+#Top_bar .zlab_caption{
+  padding-top: 6px !important;   /* try 4–10px */
+  margin-top: 0 !important;      /* don’t fight padding + margin both */
+}
+
+/* Header only: restore menu font size + vertical rhythm */
+#Top_bar #menu > ul > li > a,
+#Top_bar #menu > ul > li > a span{
+  font-size: 16px !important;   /* try 15px or 17px to match your old look */
+  line-height: 1.2 !important;
+}
+
+/* Header only: restore comfortable header height */
+#Top_bar .top_bar_left{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
